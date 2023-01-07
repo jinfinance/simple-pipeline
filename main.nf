@@ -43,7 +43,8 @@ process QUANTIFICATION {
     tuple val(sample_id), path(reads)
 
     output:
-    tuple path "$sample_id", path "ambig_info.tsv"
+    path "$sample_id" emit: sample_id
+    path "ambig_info.tsv"
     
 
     script:
@@ -91,7 +92,7 @@ workflow {
     index_ch = INDEX(params.transcriptome_file)
     quant_ch = QUANTIFICATION(index_ch, read_pairs_ch)
     fastqc_ch = FASTQC(read_pairs_ch)
-    MULTIQC(quant_ch.mix(fastqc_ch).collect())
+    MULTIQC(quant_ch.out.sample_id.mix(fastqc_ch).collect())
 }
 
 workflow.onComplete {
