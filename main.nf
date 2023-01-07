@@ -43,7 +43,7 @@ process QUANTIFICATION {
     tuple val(sample_id), path(reads)
 
     output:
-    path "$sample_id" emit: sample_id
+    path "$sample_id", emit: sample_id
     path "ambig_info.tsv"
     
 
