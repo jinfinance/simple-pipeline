@@ -43,8 +43,8 @@ process QUANTIFICATION {
     tuple val(sample_id), path(reads)
 
     output:
-    path "$sample_id"
-    path "ambig_info.tsv"
+    tuple path "$sample_id", path "ambig_info.tsv"
+    
 
     script:
     """
