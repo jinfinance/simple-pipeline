@@ -44,7 +44,7 @@ process QUANTIFICATION {
 
     output:
     path "$sample_id", emit: sample_id
-    path "ambig_info.tsv"
+    path "${sample_id}/aux_info/ambig_info.tsv"
     
 
     script:
